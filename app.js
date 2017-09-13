@@ -17,7 +17,7 @@ console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
 			credentials = require('./credentials_dev');
 			break;
 		default:
-			credentials = require('./credentials_default');
+			credentials = require('./credentials_dev');
 			break;
 	}
 

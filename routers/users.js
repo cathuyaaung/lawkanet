@@ -9,6 +9,22 @@ module.exports = (express, connection) => {
 			route: 'api/users'
 	    });
 	});
+	router.get('/:_id', (req,res,next) => {
+		res.jsonp({
+				name: 'Khit Luu API',
+				version: '1.0',
+		route: 'api/users/'+req.params._id
+		});
+		next();
+	});
+	router.get('/:_id/test', (req,res,next) => {
+		res.jsonp({
+				name: 'Khit Luu API',
+				version: '1.0',
+		route: 'api/users/'+req.params._id+'/test'
+		});
+		next();
+	});
 
 	return router;
 };
