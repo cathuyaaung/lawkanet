@@ -3,19 +3,18 @@ module.exports = (express, connection) => {
 
 
 	router.get('/', (req, res) => {
-	    res.jsonp({
-	        name: 'Khit Luu API',
-	        version: '1.0',
-			route: 'api/users'
-	    });
+		var query = connection.query('SELECT * FROM users',function(err,rows){
+			if(err)
+				res.jsonp({status: 0, data: rows});
+			res.jsonp({status:1, data: rows});
+		});
 	});
 	router.get('/:_id', (req,res,next) => {
 		res.jsonp({
-				name: 'Khit Luu API',
+				name: 'Khit Luu API 2',
 				version: '1.0',
 		route: 'api/users/'+req.params._id
 		});
-		next();
 	});
 	router.get('/:_id/test', (req,res,next) => {
 		res.jsonp({
@@ -23,7 +22,6 @@ module.exports = (express, connection) => {
 				version: '1.0',
 		route: 'api/users/'+req.params._id+'/test'
 		});
-		next();
 	});
 
 	return router;

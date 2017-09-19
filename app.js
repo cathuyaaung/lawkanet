@@ -17,7 +17,7 @@ console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
 			credentials = require('./credentials_dev');
 			break;
 		default:
-			credentials = require('./credentials_dev');
+			credentials = require('./credentials_dev2');
 			break;
 	}
 
@@ -37,7 +37,8 @@ console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
 	app.set('views', path.join(__dirname, 'views'));
 	app.set('view engine', 'ejs'); // use either jade or ejs
 	// instruct express to server up static assets
-	app.use(express.static('public'));
+	app.use('/public', express.static('public'));
+	app.use('/bower_components',  express.static('bower_components'));
 
 	// Support for Crossdomain JSONP
 	app.set('jsonp callback name', 'callback');

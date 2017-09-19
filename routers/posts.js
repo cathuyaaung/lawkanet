@@ -4,11 +4,11 @@ module.exports = (express, connection) => {
 
 	// api/posts
 	router.get('/', (req, res) => {
-	    res.jsonp({
-	        name: 'Khit Luu API',
-	        version: '1.0',
-			route: 'api/posts'
-	    });
+		var query = connection.query('SELECT * FROM posts',function(err,rows){
+			if(err)
+				res.jsonp({status: 0, data: rows});
+			res.jsonp({status:1, data: rows});
+		});
 	});
 
 
